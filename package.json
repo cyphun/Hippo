@@ -1,6 +1,6 @@
 {
   "name": "Hippo",
-  "version": "0.0.1-9",
+  "version": "0.0.1-10",
   "private": true,
   "scripts": {
     "start": "node app.js"
@@ -16,7 +16,9 @@
     "shortid": "*",
     "imagemagick": "*",
     "chrono-node": "*",
-    "s3": "*"
+    "s3": "*",
+    "jira": "*",
+    "html-entities": "*"
   },
   "subdomain": "paloalto-hippo",
   "engines": {

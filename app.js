@@ -56,6 +56,7 @@ app.all('*', function (req, res, next) {
 var bots = [
 	require('./bots/kesey/index.js'),
 	require('./bots/github/index.js'),
+	require('./bots/jira-issues.js'),
 	require('./bots/lunch.js')
 ];
 
