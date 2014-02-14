@@ -1,0 +1,25 @@
+{
+  "name": "Hippo",
+  "version": "0.0.1-4",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "3.4.8",
+    "request": "*",
+    "async": "*",
+    "hjs": "*",
+    "underscore": "*",
+    "hipchatter": "*",
+    "less-middleware": "*",
+    "shortid": "*",
+    "imagemagick": "*",
+    "chrono-node": "*",
+    "s3": "*"
+  },
+  "subdomain": "paloalto-hippo",
+  "engines": {
+    "node": "0.10.x"
+  }
+}

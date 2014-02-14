@@ -1,0 +1,4 @@
+hippo
+=====
+
+Simple Hipchat bot

@@ -1,0 +1,4 @@
+config.js
+/node_modules/
+/bots/kesey/images/*.png
+.DS_Store
