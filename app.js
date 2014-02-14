@@ -53,7 +53,8 @@ app.all('*', function (req, res, next) {
 
 var bots = [
 	require('./bots/kesey/index.js'),
-	require('./bots/github/index.js')
+	require('./bots/github/index.js'),
+	require('./bots/lunch.js')
 ];
 
 app.get('/registerhooks', function (req, res) {
