@@ -26,7 +26,18 @@ module.exports = {
 		'message_format': 'text'
 	},
 	execute: function (body, cb) {
-		var lunch = _.shuffle(lunchOptions)[0];
+		var message = body.item.message.message;
+
+		var not = "";
+		if (message.indexOf('not') > 0) {
+			not = message.substr(message.indexOf('not ') + 4).split(' ');
+		}
+
+		var hat = _.shuffle(lunchOptions);
+		var lunch = _.find(hat, function (food) {
+			return _.intersection(food.split(' '), not).length === 0;
+		});
+
 		cb("Might I humbly suggest: " + lunch);
 	}
 };
