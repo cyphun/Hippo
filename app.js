@@ -40,7 +40,9 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-// make the selfURL object global
+app.set('selfURL', config.selfURL);
+
+// update the selfURL value when a request comes in
 app.all('*', function (req, res, next) {
 	var selfURL = req.protocol + '://' + req.headers.host;
 	app.set('selfURL', selfURL);
@@ -57,10 +59,14 @@ var bots = [
 	require('./bots/lunch.js')
 ];
 
+// this registers webhooks with hipchat with an alternate URL if necessary
 app.get('/registerhooks', function (req, res) {
 	botManager.setUpBots(app, hipchatter, config.hipchat.roomId, bots);
 	res.send(200);
 });
+
+// automatically set up webhooks with default URL
+botManager.setUpBots(app, hipchatter, config.hipchat.roomId, bots);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

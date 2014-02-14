@@ -72,7 +72,7 @@ function registerBots(app, selfURL, roomId, bots, hipchat) {
 			bot.registration(app, selfURL, cb);
 		}
 
-		if (bot.event) {
+		if (bot.event && selfURL) {
 			// register hipchat webhook
 			hipchat.create_webhook(roomId, {
 				url: getWebhookPath(bot, selfURL),
