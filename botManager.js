@@ -1,6 +1,7 @@
 var webhookKey = "hippo";
 
-var _ = require('underscore');
+var _ = require('underscore'),
+	async = require('async');
 
 function getWebhookName(bot) {
 	return [webhookKey, bot.name].join('.');
@@ -27,23 +28,24 @@ function unregisterBots (hipchat, roomId, cb) {
 		typeof cb === 'function' && cb();
 
 		// Delete all webhooks we previously registered
-		for (var i = 0; i < hooks.items.length; i++) {
-			var hook = hooks.items[i];
+		_.each(hooks.items, function (hook) {
 			if (isOurWebhook(hook.name)) {
 				hipchat.delete_webhook(roomId, hook.id, function (err, err_response) {
 					console.log(err ? err_response : ('Deleted old webhook ' + hook.name));
 				});
 			}
-		}
+		});
 	});
 };
 
 function registerBots(app, selfURL, roomId, bots, hipchat) {
 	// loop through list of bots
+	var bot;
 
-	for (i = 0; i < bots.length; i++) {
+	_.each(bots, function (bot) {
 		// register each bot
-		var bot = bots[i];
+		//bot = bots[i];
+
 		var notification = _.extend({}, bot.notification);
 
 		var cb = function (response) {
@@ -81,7 +83,7 @@ function registerBots(app, selfURL, roomId, bots, hipchat) {
 				console.log(err ? err_response : ('Registered webhook ' + getWebhookName(bot)));
 			});
 		}
-	}
+	});
 
 };
 

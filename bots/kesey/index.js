@@ -78,7 +78,7 @@ var execute = function (body, cb) {
 		end = new Date(end.getTime() - week);
 	}
 
-	var urls = getURLs(global.dropcam.uuid, width, start, end);
+	var urls = getURLs(global.config.dropcam.uuid, width, start, end);
 
 	// figure out what images to get
 
