@@ -6,7 +6,7 @@ var template = {
 	'opened': function(body) {
 		var tpl = '<img src="%s&s=24" /> Pull Request #%d <a href="%s">%s</a>';
 		var pr = body['pull_request'];
-		return util.format(tpl, pr.user['avatar_url'], pr.number, pr.url, pr.title);
+		return util.format(tpl, pr.user['avatar_url'], pr.number, pr.html_url, pr.title);
 	}
 };
 
