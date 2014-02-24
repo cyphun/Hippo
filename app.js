@@ -62,12 +62,20 @@ var bots = [
 
 // this registers webhooks with hipchat with an alternate URL if necessary
 app.get('/registerhooks', function (req, res) {
-	botManager.setUpBots(app, hipchatter, config.hipchat.roomId, bots);
+	botManager.setUpBots(app, bots);
 	res.send(200);
 });
 
+// app.get('/keseytest/:msg', function (req, res) {
+// 	var msg = decodeURIComponent(req.params.msg);
+// 	bots[0].execute({item: {message: {message: msg}}}, function (html) {
+// 		console.log(html);
+// 		res.send(html);
+// 	});
+// });
+
 // automatically set up webhooks with default URL
-botManager.setUpBots(app, hipchatter, config.hipchat.roomId, bots);
+//botManager.setUpBots(app, bots);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
