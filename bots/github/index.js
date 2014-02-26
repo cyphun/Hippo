@@ -1,12 +1,25 @@
 var util = require('util');
 
-var _ = require('underscore');
+var _ = require('underscore'),
+	Entities = require('html-entities').AllHtmlEntities;
+
+
+var entities = new Entities();
 
 var template = {
 	'opened': function(body) {
-		var tpl = '<img src="%s&s=24" /> Pull Request #%d <a href="%s">%s</a>';
-		var pr = body['pull_request'];
-		return util.format(tpl, pr.user['avatar_url'], pr.number, pr.html_url, pr.title);
+		var pr = body['pull_request'],
+			avatarUrl = pr.user['avatar_url'];
+
+		if (avatarUrl.indexOf('gravatar') > -1) {
+			avatarUrl += "&s=24";
+		}
+
+		var title = entities.encode(pr.title);
+
+		var tpl = '<img src="%s" height="24px" /> Pull Request #%d <a href="%s">%s</a>';
+
+		return util.format(tpl, pr.user['avatar_url'], pr.number, pr.html_url, title);
 	}
 };
 
