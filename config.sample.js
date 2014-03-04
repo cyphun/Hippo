@@ -21,5 +21,17 @@ module.exports = {
 	},
 	dropcam: {
 		uuid: '' // Go to your dropcam page and view-source, search for "uuid=" - your UUID is the first result. 32 chars of hex.
+	},
+	customSearch: {
+		requires: [
+			'dependencies.js', // include any dependencies that your custom search needs
+			'custom-search.js' // include your custom JS search, this should include your AppSearch object
+		],
+		hipChatPattern: '[', // the search pattern that hipchat uses to trigger your custom search
+		
+		// use a regex to actually find what you are searching off of,
+		// in this case anything inside square brackets [searchTerm], with just one group
+		messageRegex: new RegExp('\\[(.*?)\\]', 'gi'), 
+
 	}
 }
